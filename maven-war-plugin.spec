@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.3
-Release:        9.11%{?dist}
+Release:        9.12%{?dist}
 Summary:        Maven WAR Plugin
 
 License:        ASL 2.0
@@ -17,19 +17,19 @@ BuildArch: noarch
 BuildRequires: %{?scl_prefix_java_common}javapackages-tools
 # Maven and its dependencies
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-plugin-plugin
-BuildRequires: maven30-maven-javadoc-plugin
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-surefire-provider-junit
-BuildRequires: maven30-maven-surefire-plugin
-BuildRequires: maven30-maven-filtering
-BuildRequires: maven30-maven-enforcer-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-maven-changes-plugin
+BuildRequires: %{?scl_prefix}maven-plugin-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires: %{?scl_prefix}maven-surefire-plugin
+BuildRequires: %{?scl_prefix}maven-filtering
+BuildRequires: %{?scl_prefix}maven-enforcer-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}maven-changes-plugin
 # Others
-BuildRequires: maven30-xstream
+BuildRequires: %{?scl_prefix}xstream
 
 
 
@@ -47,13 +47,13 @@ API documentation for %{pkg_name}.
 %setup -q -n %{pkg_name}-%{version}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -67,6 +67,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.3-9.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.3-9.11
 - maven33 rebuild
 
