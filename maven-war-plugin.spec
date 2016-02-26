@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.3
-Release:        9.12%{?dist}
+Release:        9.13%{?dist}
 Summary:        Maven WAR Plugin
 
 License:        ASL 2.0
@@ -16,7 +16,7 @@ BuildArch: noarch
 # Basic stuff
 BuildRequires: %{?scl_prefix_java_common}javapackages-tools
 # Maven and its dependencies
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix}maven-plugin-plugin
 BuildRequires: %{?scl_prefix}maven-javadoc-plugin
 BuildRequires: %{?scl_prefix}maven-jar-plugin
@@ -67,6 +67,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 2.3-9.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.3-9.12
 - maven33 rebuild #2
 
